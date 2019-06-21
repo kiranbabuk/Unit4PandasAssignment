@@ -31,6 +31,8 @@ uniqueitems = len(purchase_data["Item ID"].unique())
 avgprice = round(purchase_data["Price"].mean(), 2)
 totalpurchases = purchase_data["Purchase ID"].count()
 totalrevenue = purchase_data["Price"].sum()
+
+pd.options.display.float_format = '${:,.2f}'.format
 purchasinganalysis = {"Number of Unique Items": [uniqueitems], 
                       "Average Price":[avgprice],
                       "Number of Purchases": [totalpurchases],
@@ -89,6 +91,7 @@ otheravgpur = round(other_ds["Price"].mean(), 2)
 othertotpur = round(other_ds["Price"].sum(), 2)
 otheravgtotpp = round(othertotpur/uniqueplayers, 2)
 
+pd.options.display.float_format = '${:,.2f}'.format
 genderpuranalysis = {"Gender":["Male", "Female", "Other/Non-Disclosed"],
                     "Purchase Count":[femalepurcount,malepurcount,otherpurcount],
                     "Avg Purchase Price":[femaleavgpur, maleavgpur, otheravgpur],
@@ -200,10 +203,4 @@ popular_formatted = most_popular_items.sort_values(["Total Purchase Value"],
                                                    ascending=False).head()
 popular_formatted.style.format({"Item Price":"${:,.2f}",
                                 "Total Purchase Value":"${:,.2f}"})
-
-
-# In[ ]:
-
-
-
 
